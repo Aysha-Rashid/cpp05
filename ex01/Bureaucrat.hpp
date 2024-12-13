@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <string>
+#include "Form.h"
+
+class Form;
 
 class Bureaucrat
 {
@@ -11,6 +14,7 @@ class Bureaucrat
         int _grade;
     public:
         Bureaucrat(std::string const name, int grade);
+        Bureaucrat();
         Bureaucrat(Bureaucrat &copy);
         Bureaucrat &operator=(const Bureaucrat &copy);
         ~Bureaucrat();
@@ -28,6 +32,7 @@ class Bureaucrat
         void increment(void);
         void decrement(void);
         void CheckHighOrLow(int grade);
+        void signForm(Form &form); // should check if the form is signed or not
 };
 std::ostream &operator<<(std::ostream &out,  Bureaucrat &Bureaucrat);
 
