@@ -14,7 +14,7 @@ class PresidentialPardonForm : public Form
         PresidentialPardonForm &operator=(const PresidentialPardonForm &copy);
         ~PresidentialPardonForm();
 
-        void execute() const override;
+        void execute() const;
         // {
         //     if (!this.getSigned())
         //         throw std::runtime_error("Form is not signed!");
