@@ -6,6 +6,8 @@
 
 #include "Bureaucrat.hpp"
 
+#include <fstream>  // Required for std::ofstream
+
 class Bureaucrat;
 
 class ShrubberyCreationForm : public AForm

@@ -28,32 +28,26 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 
 void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 {
-    (void) executor;
-    std::cout << "ShrubberyCreationForm cannot be executed" << std::endl;
+    if (!getSigned())
+        throw std::runtime_error("Form is not signed!");
+    if (executor.getGrade() > getExecute())
+        throw GradeTooLowException();
+
+    // Write shrubbery ASCII art to a file
+    std::ofstream outFile(_target + "_shrubbery");
+    if (!outFile)
+        throw std::ios_base::failure("Failed to open file.");
+
+    outFile << "       _-_\n"
+            << "    /~~   ~~\\\n"
+            << " /~~         ~~\\\n"
+            << "{               }\n"
+            << " \\  _-     -_  /\n"
+            << "   ~  \\\\ //  ~\n"
+            << "_- -   | | _- _\n"
+            << "  _ -  | |   -_\n"
+            << "      // \\\\\n";
+
+    outFile.close();
+    std::cout << "Shrubbery has been planted in " << _target + "_shrubbery" << std::endl;
 }
-
-// void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
-// {
-//     if (!this->beSigned(&executor))
-//         throw std::runtime_error("Form is not signed!");
-//     if (executor.getGrade() > getExecuteGrade())
-//         throw GradeTooLowException();
-
-//     // Write shrubbery ASCII art to a file
-//     std::ofstream outFile(_target + "_shrubbery");
-//     if (!outFile)
-//         throw std::ios_base::failure("Failed to open file.");
-
-//     outFile << "       _-_\n"
-//             << "    /~~   ~~\\\n"
-//             << " /~~         ~~\\\n"
-//             << "{               }\n"
-//             << " \\  _-     -_  /\n"
-//             << "   ~  \\\\ //  ~\n"
-//             << "_- -   | | _- _\n"
-//             << "  _ -  | |   -_\n"
-//             << "      // \\\\\n";
-
-//     outFile.close();
-//     std::cout << "Shrubbery has been planted in " << _target + "_shrubbery" << std::endl;
-// }
