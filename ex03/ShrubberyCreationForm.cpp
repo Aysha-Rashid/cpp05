@@ -51,12 +51,3 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
     outFile.close();
     std::cout << "Shrubbery has been planted in " << _target + "_shrubbery" << std::endl;
 }
-
-
-std::ostream &operator<<(std::ostream &out,  ShrubberyCreationForm &ShrubberyCreationForm)
-{
-	out << ShrubberyCreationForm.getName() << ", needs to have sign grade:  " << ShrubberyCreationForm.getGradeSigned() << 
-		 " to sign the ShrubberyCreationForm and have the execute grade: " 
-		<< ShrubberyCreationForm.getExecute()  << " to execute the ShrubberyCreationForm " << std::endl;
-	return out;
-}

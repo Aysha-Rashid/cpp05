@@ -39,11 +39,3 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const {
 	else
 		std::cout << this->_target << "'s robotomization failed" << std::endl;
 }
-
-std::ostream &operator<<(std::ostream &out,  RobotomyRequestForm &RobotomyRequestForm)
-{
-	out << RobotomyRequestForm.getName() << ", needs to have sign grade:  " << RobotomyRequestForm.getGradeSigned() << 
-		 " to sign the RobotomyRequestForm and have the execute grade: " 
-		<< RobotomyRequestForm.getExecute()  << " to execute the RobotomyRequestForm " << std::endl;
-	return out;
-}
