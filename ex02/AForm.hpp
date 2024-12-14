@@ -28,6 +28,7 @@ class Form
         int getExecute() const;
         bool getSigned();
         void check(const Form &copy);
+        void execute(Bureaucrat const & executor) const = 0;
         class GradeTooHighException : public std::exception {
         public:
             virtual const char* what() const throw ();
@@ -39,6 +40,7 @@ class Form
         };
         // exceptions for form to check if the grade if out of bound 
 };
+
 std::ostream &operator<<(std::ostream &out,  Form &Form);
 
 #endif

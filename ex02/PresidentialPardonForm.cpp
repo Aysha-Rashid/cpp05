@@ -1,7 +1,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "AForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string name, const int signedGrade, const int executeGrade) : _target(name), _gradeSigned(signedGrade), _gradeExecute(executeGrade), _signed(0)
+PresidentialPardonForm::PresidentialPardonForm(const std::string name) : AForm(_name, 25, 5)
 {
 	check(*this);
 	// why should we not catch exception here?
@@ -44,7 +44,8 @@ void PresidentialPardonForm::check(const PresidentialPardonForm &copy)
 		throw PresidentialPardonForm::GradeTooLowException();
 }
 
-void	PresidentialPardonForm::execute() const
+void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-	std::cout << this->_target << " has been pardoned " << std::endl;
+	if (this->_gradeSigned == 25 && this->_gradeExecute == 5)
+		std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

@@ -3,9 +3,9 @@
 
 #include <iostream>
 #include <string>
-#include "Form.h"
+#include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -18,8 +18,8 @@ class Bureaucrat
         Bureaucrat(Bureaucrat &copy);
         Bureaucrat &operator=(const Bureaucrat &copy);
         ~Bureaucrat();
-        const std::string getName(void);
-        int getGrade(void);
+
+
         class GradeTooHighException : public std::exception {
         public:
             virtual const char* what() const throw ();
@@ -29,10 +29,15 @@ class Bureaucrat
         public:
             virtual const char* what() const throw ();
         };
+
+
+        const std::string getName(void);
+        int getGrade(void);
         void increment(void);
         void decrement(void);
         void CheckHighOrLow(int grade);
         void signForm(Form &form); // should check if the form is signed or not
+        void executeForm(AForm const & form);
 };
 std::ostream &operator<<(std::ostream &out,  Bureaucrat &Bureaucrat);
 
