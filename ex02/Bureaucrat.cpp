@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)
 {
@@ -15,6 +15,7 @@ Bureaucrat::Bureaucrat() : _name("default"), _grade(2)
 		// it would mean that an invalid bureaucrat is created
 	std::cout << "Default Bureaucrat constructor called" << std::endl;
 }
+
 Bureaucrat::Bureaucrat(Bureaucrat &copy) : _name(copy._name), _grade(copy._grade)
 {
 	CheckHighOrLow(copy._grade);
@@ -36,9 +37,9 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "Default Bureaucrat destructor called" << std::endl;
 }
 
-const std::string Bureaucrat::getName(void) { return (this->_name);}
+const std::string Bureaucrat::getName(void) const { return (this->_name);}
 
-int Bureaucrat::getGrade(void) { return (this->_grade);}
+int Bureaucrat::getGrade(void) const { return (this->_grade);}
 
 void Bureaucrat::CheckHighOrLow(int grade){
 	if (grade > 150)
@@ -76,16 +77,26 @@ const char* Bureaucrat::GradeTooLowException::what() const throw ()
 	return (" --- Grade too Low ---");
 }
 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(AForm &AForm)
 {
 	try {
-		form.beSigned(*this);
-		std::cout << _name << " signed form " << form.getName() << std::endl;
+		AForm.beSigned(*this);
+		std::cout << _name << " signed AForm " << AForm.getName() << std::endl;
 	} catch (const std::exception &e) {
-		std::cout << _name << " could not sign form " << form.getName()
+		std::cout << _name << " could not sign AForm " << AForm.getName()
 				  << " because: " << e.what() << std::endl;
 		throw GradeTooLowException();
 	}
+}
+
+void Bureaucrat::executeForm(AForm const &form) const {
+    try {
+        form.execute(*this);
+        std::cout << getName() << " executed " << form.getName() << std::endl;
+    } catch (std::exception &e) {
+        std::cout << getName() << " couldn't execute " << form.getName()
+                  << " because " << e.what() << std::endl;
+    }
 }
 
 std::ostream &operator<<(std::ostream &out,  Bureaucrat &Bureaucrat)

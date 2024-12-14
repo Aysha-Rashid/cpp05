@@ -31,13 +31,13 @@ class Bureaucrat
         };
 
 
-        const std::string getName(void);
-        int getGrade(void);
+        const std::string getName(void) const;
+        int getGrade(void) const;
         void increment(void);
         void decrement(void);
         void CheckHighOrLow(int grade);
-        void signForm(Form &form); // should check if the form is signed or not
-        void executeForm(AForm const & form);
+        void signForm(AForm &form); // should check if the form is signed or not
+        void executeForm(AForm const &form) const;
 };
 std::ostream &operator<<(std::ostream &out,  Bureaucrat &Bureaucrat);
 
