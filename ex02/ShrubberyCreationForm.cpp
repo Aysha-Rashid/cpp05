@@ -29,8 +29,8 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 {
     if (!getSigned())
-        throw std::runtime_error("Form is not signed!");
-    if (executor.getGrade() > getExecute())
+        throw AForm::GradeNotSigned();
+    else if (executor.getGrade() > getExecute())
         throw GradeTooLowException();
 
     // Write shrubbery ASCII art to a file
@@ -55,7 +55,8 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 
 std::ostream &operator<<(std::ostream &out,  ShrubberyCreationForm &ShrubberyCreationForm)
 {
-	out << ShrubberyCreationForm.getName() << ", needs to have sign grade:  " << ShrubberyCreationForm.getGradeSigned() << 
+	out << ShrubberyCreationForm.getName() << ", needs to have sign grade:  " << 
+        ShrubberyCreationForm.getGradeSigned() << 
 		 " to sign the ShrubberyCreationForm and have the execute grade: " 
 		<< ShrubberyCreationForm.getExecute()  << " to execute the ShrubberyCreationForm " << std::endl;
 	return out;

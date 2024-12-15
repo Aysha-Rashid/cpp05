@@ -37,6 +37,10 @@ class AForm
         public:
             virtual const char* what() const throw ();
         };
+        class GradeNotSigned : public std::exception {
+        public:
+            virtual const char* what() const throw ();
+        };
 
         virtual void execute(Bureaucrat const & executor) const = 0;
         // exceptions for AForm to check if the grade if out of bound 
