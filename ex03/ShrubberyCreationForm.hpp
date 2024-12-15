@@ -4,8 +4,6 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-#include "Bureaucrat.hpp"
-
 #include <fstream>
 
 class Bureaucrat;
@@ -24,7 +22,5 @@ class ShrubberyCreationForm : public AForm
         void execute(Bureaucrat const & executor) const;
 
 };
-
-std::ostream &operator<<(std::ostream &out,  ShrubberyCreationForm &ShrubberyCreationForm);
 
 #endif

@@ -8,22 +8,20 @@
 #include "ShrubberyCreationForm.hpp"
 
 class Bureaucrat;
+class Form;
 
-class Intern : public AForm
+class Intern
 {
     private:
         std::string _target;
 
     public:
         Intern();
+        Intern(Intern &copy);
         Intern &operator=(const Intern &copy);
         ~Intern();
 
         AForm *makeForm(std::string form, std::string target);        
-        // void execute(Bureaucrat const & executor) const;
-
 };
-
-std::ostream &operator<<(std::ostream &out,  Intern &Intern);
 
 #endif

@@ -30,7 +30,6 @@ class Bureaucrat
             virtual const char* what() const throw ();
         };
 
-
         const std::string getName(void) const;
         int getGrade(void) const;
         void increment(void);

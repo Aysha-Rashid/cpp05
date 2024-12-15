@@ -2,7 +2,7 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string name) : AForm(name, 25, 5) , _target(name)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string name) : AForm(name, 145, 137) , _target(name)
 {
 	std::cout << "Default ShrubberyCreationForm constructor called" << std::endl;
 }
@@ -29,8 +29,8 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 {
     if (!getSigned())
-        throw std::runtime_error("Form is not signed!");
-    if (executor.getGrade() > getExecute())
+        throw AForm::GradeNotSigned();
+    else if (executor.getGrade() > getExecute())
         throw GradeTooLowException();
 
     // Write shrubbery ASCII art to a file

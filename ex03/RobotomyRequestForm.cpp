@@ -27,13 +27,16 @@ RobotomyRequestForm::~RobotomyRequestForm()
 }
 
 
-void RobotomyRequestForm::execute(Bureaucrat const &executor) const {
-    int	success;
+void RobotomyRequestForm::execute(Bureaucrat const &executor) const 
+{
+    if (executor.getGrade() > getExecute())
+		throw AForm::GradeTooLowException();
+	else if (!getSigned())
+		throw AForm::GradeNotSigned();
 
-	/* Set Seed */
+	int	success;
 	srand((unsigned) time(NULL));
 	success = rand() % 2;
-	(void)executor;
 	if (success)
 		std::cout << this->_target << " has been robotomized successfully" << std::endl;
 	else

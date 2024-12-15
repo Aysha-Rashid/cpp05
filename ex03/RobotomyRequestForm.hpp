@@ -1,14 +1,12 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 #define ROBOTOMYREQUESTFORM_HPP
 
-#include "AForm.hpp"
-#include "Bureaucrat.hpp"
-
-#include "RobotomyRequestForm.hpp"
 #include <cstdlib>  // For std::rand() and std::srand()
 #include <ctime> 
+#include "AForm.hpp"
+#include "Bureaucrat.hpp"
 class Bureaucrat;
-
+// class AForm;
 class RobotomyRequestForm : public AForm
 {
     private:
@@ -23,7 +21,5 @@ class RobotomyRequestForm : public AForm
         void execute(Bureaucrat const & executor) const;
 
 };
-
-std::ostream &operator<<(std::ostream &out,  RobotomyRequestForm &RobotomyRequestForm);
 
 #endif

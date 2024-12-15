@@ -1,13 +1,13 @@
-NAME= Intern
+NAME= AForm
 
 
 SRC= main.cpp\
 	Bureaucrat.cpp\
 	AForm.cpp\
+	Intern.cpp\
 	PresidentialPardonForm.cpp\
 	RobotomyRequestForm.cpp\
-	ShrubberyCreationForm.cpp\
-	Intern.cpp\
+	ShrubberyCreationForm.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
