@@ -20,7 +20,6 @@ class ShrubberyCreationForm : public AForm
         ~ShrubberyCreationForm();
 
         void execute(Bureaucrat const & executor) const;
-
 };
 
 #endif

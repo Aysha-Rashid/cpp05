@@ -16,12 +16,11 @@ class AForm
         bool _signed;
 
     public:
+        AForm();
         AForm(const std::string name, const int signedGrade, const int executeGrade) ;
         AForm(AForm &copy);
         AForm &operator=(const AForm &copy);
         virtual ~AForm();
-
-        // virtual void execute() const = 0;  // Pure virtual function (makes AForm abstract)
 
         void beSigned(const Bureaucrat &Bureaucrat);
         std::string getName() const;

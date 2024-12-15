@@ -6,7 +6,7 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 class Bureaucrat;
-// class AForm;
+
 class RobotomyRequestForm : public AForm
 {
     private:

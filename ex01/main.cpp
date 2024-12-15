@@ -5,7 +5,7 @@ int main()
 {
 	try {
 		Bureaucrat alice("Alice", 2);
-		Bureaucrat bob("Bob", 5);
+		Bureaucrat bob("Bob", 6);
 		Form form("Confidential", 3, 5); 
 
 		alice.signForm(form);

@@ -2,31 +2,33 @@
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)
 {
-    CheckHighOrLow(_grade);
-    // why should we not catch exception here?
-        // it would mean that an invalid bureaucrat is created
-    std::cout << "Default Bureaucrat constructor called" << std::endl;
+	CheckHighOrLow(_grade);
+	std::cout << "Bureaucrat " << this->_name << " constructor called" << std::endl;
+}
+Bureaucrat::Bureaucrat() : _name("default"), _grade(2)
+{
+	CheckHighOrLow(_grade);
+	std::cout << "Bureaucrat " << "default" << " constructor called" << std::endl;
 }
 Bureaucrat::Bureaucrat(Bureaucrat &copy) : _name(copy._name), _grade(copy._grade)
 {
-    CheckHighOrLow(copy._grade);
-    std::cout << "Copy Bureaucrat Constuctor is being called" << std::endl;
+	CheckHighOrLow(copy._grade);
+	std::cout << "Bureaucrat " << this->_name << " copy constructor called" << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy)
 {
-    if (this == &copy)
+	if (this == &copy)
 		return *this;
-    CheckHighOrLow(copy._grade);
+	CheckHighOrLow(copy._grade);
 	this->_grade = copy._grade;
-	const_cast<std::string&>(this->_name) = copy._name;
-    std::cout << "Copy Bureaucrat Assignment Constructor is Called" << std::endl;
-    return (*this);
+	std::cout << "Copy Bureaucrat " << this->_name << " Assignment Constructor is Called" << std::endl;
+	return (*this);
 }
 
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << "Default Bureaucrat destructor called" << std::endl;
+	std::cout << "Default " << this ->_name << " Bureaucrat destructor called" << std::endl;
 }
 
 const std::string Bureaucrat::getName(void) { return (this->_name);}
@@ -52,12 +54,8 @@ void Bureaucrat::increment() {
 }
 
 void Bureaucrat::decrement() {
-    try {
-        CheckHighOrLow(_grade + 1);
-        _grade++;
-    } catch (const std::exception &e) {
-        std::cout << "Decrement failed: " << e.what() << std::endl;
-    }
+    CheckHighOrLow(_grade + 1);
+    _grade++;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw ()

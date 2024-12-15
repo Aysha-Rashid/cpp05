@@ -35,7 +35,7 @@ class Bureaucrat
         void increment(void);
         void decrement(void);
         void CheckHighOrLow(int grade);
-        void signForm(AForm &form); // should check if the form is signed or not
+        void signForm(AForm &form);
         void executeForm(AForm const &form) const;
 };
 std::ostream &operator<<(std::ostream &out,  Bureaucrat &Bureaucrat);

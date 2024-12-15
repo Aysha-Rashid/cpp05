@@ -13,7 +13,7 @@ class Bureaucrat
         const std::string _name;
         int _grade;
     public:
-        Bureaucrat(std::string const name, int grade);
+        Bureaucrat(const std::string name, int grade);
         Bureaucrat();
         Bureaucrat(Bureaucrat &copy);
         Bureaucrat &operator=(const Bureaucrat &copy);

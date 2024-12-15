@@ -4,14 +4,17 @@
 AForm::AForm(const std::string name, const int signedGrade, const int executeGrade) : _name(name), _gradeSigned(signedGrade), _gradeExecute(executeGrade), _signed(0)
 {
 	check(*this);
-	// why should we not catch exception here?
-		// it would mean that an invalid AForm is created
-	std::cout << "Default AForm constructor called" << std::endl;
+	std::cout << "AForm " << name << " constructor called" << std::endl;
+}
+AForm::AForm() : _name("default"), _gradeSigned(2), _gradeExecute(2), _signed(0)
+{
+	check(*this);
+	std::cout << "AForm " << "default" << " constructor called" << std::endl;
 }
 AForm::AForm(AForm &copy) : _name(copy._name), _gradeSigned(copy._gradeSigned), _gradeExecute(copy._gradeExecute), _signed(copy._signed)
 {
 	check(copy);
-	std::cout << "Copy AForm Constuctor is being called" << std::endl;
+	std::cout << "Form " << this->_name << " Copy Constuctor is being called" << std::endl;
 }
 
 AForm &AForm::operator=(const AForm &copy)
@@ -29,7 +32,7 @@ AForm &AForm::operator=(const AForm &copy)
 
 AForm::~AForm()
 {
-	std::cout << "Default AForm destructor called" << std::endl;
+	std::cout << "Default " << this->_name << " AForm destructor called" << std::endl;
 }
 void AForm::check(const AForm &copy)
 {

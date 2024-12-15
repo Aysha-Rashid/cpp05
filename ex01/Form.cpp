@@ -4,14 +4,17 @@
 Form::Form(const std::string name, const int signedGrade, const int executeGrade) : _name(name), _gradeSigned(signedGrade), _gradeExecute(executeGrade), _signed(0)
 {
 	check(*this);
-	// why should we not catch exception here?
-		// it would mean that an invalid Form is created
-	std::cout << "Default Form constructor called" << std::endl;
+	std::cout << "Form " << name << " constructor called" << std::endl;
+}
+Form::Form() : _name("default"), _gradeSigned(2), _gradeExecute(2), _signed(0)
+{
+	check(*this);
+	std::cout << "Form " << "default" << " constructor called" << std::endl;
 }
 Form::Form(Form &copy) : _name(copy._name), _gradeSigned(copy._gradeSigned), _gradeExecute(copy._gradeExecute), _signed(copy._signed)
 {
 	check(copy);
-	std::cout << "Copy Form Constuctor is being called" << std::endl;
+	std::cout << "Form " << this->_name << " Copy Constuctor is being called" << std::endl;
 }
 
 Form &Form::operator=(const Form &copy)
@@ -29,7 +32,7 @@ Form &Form::operator=(const Form &copy)
 
 Form::~Form()
 {
-	std::cout << "Default Form destructor called" << std::endl;
+	std::cout << "Default " << this->_name << " Form destructor called" << std::endl;
 }
 void Form::check(const Form &copy)
 {
@@ -51,8 +54,8 @@ bool Form::getSigned() { return(this->_signed); }
 void Form::beSigned(Bureaucrat Bureaucrat)
 {
 	if (Bureaucrat.getGrade() > this->_gradeSigned)
-		throw GradeTooLowException();  // Bureaucrat's grade is too low to sign
-	this->_signed = true;  // Successfully signed
+		throw GradeTooLowException();
+	this->_signed = 1;
 	std::cout << Bureaucrat.getName() << " successfully signed " << this->_name << std::endl;
 }
 
@@ -65,6 +68,12 @@ const char* Form::GradeTooLowException::what() const throw ()
 {
 	return (" --- Grade too Low to sign this form ---");
 }
+
+const char* Form::GradeNotSigned::what() const throw ()
+{
+	return (" --- Form not signed ---");
+}
+
 
 std::ostream &operator<<(std::ostream &out,  Form &Form)
 {

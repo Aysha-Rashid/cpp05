@@ -15,6 +15,7 @@ class Form
         bool _signed;
         //
     public:
+        Form();
         Form(const std::string name, const int signedGrade, const int executeGrade) ;
         Form(Form &copy);
         Form &operator=(const Form &copy);
@@ -35,6 +36,12 @@ class Form
         public:
             virtual const char* what() const throw ();
         };
+
+        class GradeNotSigned : public std::exception {
+        public:
+            virtual const char* what() const throw ();
+        };
+
         // exceptions for form to check if the grade if out of bound 
 };
 std::ostream &operator<<(std::ostream &out,  Form &Form);

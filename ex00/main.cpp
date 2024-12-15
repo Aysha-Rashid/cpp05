@@ -21,6 +21,4 @@ int main()
     catch (std::exception &error) {
         std::cerr << "Exception caught: " << error.what() << std::endl;
     }
-    // dude.getName();
-    // dude.getGrade();
 }

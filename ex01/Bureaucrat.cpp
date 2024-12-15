@@ -1,24 +1,20 @@
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)
 {
 	CheckHighOrLow(_grade);
-	// why should we not catch exception here?
-		// it would mean that an invalid bureaucrat is created
-	std::cout << "Default Bureaucrat constructor called" << std::endl;
+	std::cout << "Bureaucrat " << this->_name << " constructor called" << std::endl;
 }
 Bureaucrat::Bureaucrat() : _name("default"), _grade(2)
 {
 	CheckHighOrLow(_grade);
-	// why should we not catch exception here?
-		// it would mean that an invalid bureaucrat is created
-	std::cout << "Default Bureaucrat constructor called" << std::endl;
+	std::cout << "Bureaucrat " << "default" << " constructor called" << std::endl;
 }
 Bureaucrat::Bureaucrat(Bureaucrat &copy) : _name(copy._name), _grade(copy._grade)
 {
 	CheckHighOrLow(copy._grade);
-	std::cout << "Copy Bureaucrat Constuctor is being called" << std::endl;
+	std::cout << "Bureaucrat " << this->_name << " copy constructor called" << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy)
@@ -27,13 +23,13 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy)
 		return *this;
 	CheckHighOrLow(copy._grade);
 	this->_grade = copy._grade;
-	std::cout << "Copy Bureaucrat Assignment Constructor is Called" << std::endl;
+	std::cout << "Copy Bureaucrat " << this->_name << " Assignment Constructor is Called" << std::endl;
 	return (*this);
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Default Bureaucrat destructor called" << std::endl;
+	std::cout << "Default " << this ->_name << " Bureaucrat destructor called" << std::endl;
 }
 
 const std::string Bureaucrat::getName(void) { return (this->_name);}
@@ -48,22 +44,13 @@ void Bureaucrat::CheckHighOrLow(int grade){
 }
 
 void Bureaucrat::increment() {
-	try {
-		CheckHighOrLow(_grade - 1);
-		_grade--;
-	} catch (const std::exception &e) {
-		std::cout << "Increment failed: " << e.what() << std::endl;
-	}
-	
+	CheckHighOrLow(_grade - 1);
+	_grade--;
 }
 
 void Bureaucrat::decrement() {
-	try {
-		CheckHighOrLow(_grade + 1);
-		_grade++;
-	} catch (const std::exception &e) {
-		std::cout << "Decrement failed: " << e.what() << std::endl;
-	}
+	CheckHighOrLow(_grade + 1);
+	_grade++;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw ()
@@ -76,16 +63,14 @@ const char* Bureaucrat::GradeTooLowException::what() const throw ()
 	return (" --- Grade too Low ---");
 }
 
-void Bureaucrat::signAForm(AForm &AForm)
+void Bureaucrat::signForm(Form &Form)
 {
-	try {
-		AForm.beSigned(*this);
-		std::cout << _name << " signed AForm " << AForm.getName() << std::endl;
-	} catch (const std::exception &e) {
-		std::cout << _name << " could not sign AForm " << AForm.getName()
-				  << " because: " << e.what() << std::endl;
-		throw GradeTooLowException();
-	}
+	Form.beSigned(*this);
+	if (Form.getSigned() == 1)
+		std::cout << _name << " signed Form " << Form.getName() << std::endl;
+	else 
+		std::cout << _name << " could not sign Form " << Form.getName()
+				  << " because: " << std::endl;
 }
 
 std::ostream &operator<<(std::ostream &out,  Bureaucrat &Bureaucrat)
