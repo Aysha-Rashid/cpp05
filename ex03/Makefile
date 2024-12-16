@@ -13,7 +13,7 @@ OBJ = $(SRC:.cpp=.o)
 
 CPP = c++
 
-CPPFLAGS = -std=c++98 -Wall -Wextra -Werror
+CPPFLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
 $(NAME): $(OBJ)
 	@ $(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)

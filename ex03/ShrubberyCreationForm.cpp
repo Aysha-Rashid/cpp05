@@ -34,7 +34,7 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
         throw GradeTooLowException();
 
     // Write shrubbery ASCII art to a file
-    std::ofstream outFile(_target + "_shrubbery");
+    std::ofstream outFile((_target + "_shrubbery").c_str());
     if (!outFile)
         throw std::ios_base::failure("Failed to open file.");
 

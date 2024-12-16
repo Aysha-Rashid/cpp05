@@ -44,13 +44,8 @@ void Bureaucrat::CheckHighOrLow(int grade){
 
 
 void Bureaucrat::increment() {
-    try {
         CheckHighOrLow(_grade - 1);
         _grade--;
-    } catch (const std::exception &e) {
-        std::cout << "Increment failed: " << e.what() << std::endl;
-    }
-    
 }
 
 void Bureaucrat::decrement() {

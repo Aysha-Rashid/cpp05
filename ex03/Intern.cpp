@@ -41,13 +41,19 @@ static AForm *RobotomyForm(const std::string target)
 	return (robo);
 }
 
+const char* Intern::NoFormFound::what() const throw ()
+{
+	return (" --- No such form is found ---");
+}
+
 AForm *Intern::makeForm(std::string form, std::string target)   
 {
     AForm *returnValue = NULL;
     const std::string input[4] = {"presidential pardon", "shrubbery creation", "robotomy request"};
     AForm *(*func[4])(std::string target) = {&PresidentialForm, &ShrubberyForm, &RobotomyForm};
 
-	std::transform(form.begin(), form.end(), form.begin(), ::tolower);
+    for (size_t i = 0; i < form.length(); i++)
+        form[i] = tolower(form[i]);
     for (size_t cur = 0; cur < (sizeof(input) / sizeof(input[0])); cur++)
     {
         if (form == input[cur])
@@ -57,7 +63,7 @@ AForm *Intern::makeForm(std::string form, std::string target)
         }
     }
     if (returnValue == NULL)
-        std::cout << "Form not found" << std::endl;
+        throw NoFormFound();
     return (returnValue);
 }
 

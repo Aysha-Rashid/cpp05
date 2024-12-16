@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include "Form.h"
+#include "Form.hpp"
 
 class Form;
 
@@ -34,6 +34,7 @@ class Bureaucrat
         void CheckHighOrLow(int grade);
         void signForm(Form &form); // should check if the form is signed or not
 };
+
 std::ostream &operator<<(std::ostream &out,  Bureaucrat &Bureaucrat);
 
 #endif
